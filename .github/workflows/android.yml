@@ -57,6 +57,16 @@ jobs:
             "ndk;26.3.11579264" \
             "cmdline-tools;latest"
 
+      - name: Print environment and SDK contents
+        run: |
+          echo "ENV CHECK"
+          env | sort | grep -E 'ANDROID|JAVA|GRADLE' || true
+          echo "\nSDK TREE"
+          ls -l "$ANDROID_SDK_ROOT" || true
+          ls -l "$ANDROID_SDK_ROOT/ndk" || true
+          ls -l "$ANDROID_SDK_ROOT/cmake" || true
+          sdkmanager --list | sed -n '1,200p' || true
+
       - name: Download Gradle 8.8
         run: |
           curl -fsSLo gradle.zip https://services.gradle.org/distributions/gradle-8.8-bin.zip
@@ -66,7 +76,7 @@ jobs:
       - name: Build Debug APK
         run: |
           gradle --version
-          gradle --no-daemon --stacktrace assembleDebug
+          gradle --no-daemon --stacktrace -i assembleDebug
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
