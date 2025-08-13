@@ -1,0 +1,25 @@
+# Gradle
+.gradle/
+build/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Android Studio/IDEA
+*.iml
+.idea/
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Logs
+*.log
+
+# NDK/SDK caches
+.cxx/
+**/.cxx/
+**/.externalNativeBuild/
+
+# OS files
+.DS_Store
+Thumbs.db
